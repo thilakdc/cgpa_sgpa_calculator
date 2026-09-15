@@ -3,25 +3,24 @@ const cgpa=document.querySelector(".button1");
 const sgpa=document.querySelector(".button2");
 let total_sub=0;
 const conclude=(total_credits,total_grade_marks)=>{
-    let final_total=Math.round(total_grade_marks/total_credits)/100;
-    body.innerHTML=`<body calss="bodyy">
-    <div class="main">
-        <div class="main1">CGPA And SGPA Calculator</div>
-    </div>
+    let final_total=Math.round((total_grade_marks/total_credits)*100)/100;
+    body.innerHTML+=`
     <div class="result">
-        <div>You Have Scored</div>
+        <div>You Have Scored ${total_grade_marks}</div>
     </div>
     <div class="submit1">
         <button>RECHECK</button>
     </div>
 </body>`;
+body.innerHTML=HTML;
 }
-const grade_point=(marks)=>{
-    if(marks>100 && marks<0){
-        body.innerHTML=`<body calss="bodyy">
+let HTML=`<body class="bodyy">
     <div class="main">
         <div class="main1">CGPA And SGPA Calculator</div>
-    </div>
+    </div>`
+const grade_point=(marks)=>{
+    if(marks>100 || marks<0){
+        HTML+=`
     <div class="all_input">
         <div class="wrong">Enter Valid Marks</div> 
         <div>
@@ -32,8 +31,9 @@ const grade_point=(marks)=>{
     <div class="submit2">
         <button>SUBMIT</button>
     </div>`;
+    body.innerHTML=HTML;
     }
-    let submit2=document.querySelector(".submit2");
+    let submit2=document.querySelector(".submit2 button");
     let mark=document.querySelector(".input12");
     submit2.addEventListener("click",()=>{
         marks=Number(mark.value);
@@ -62,10 +62,7 @@ const display=(total_sub)=>{
     let total_grade_marks=0;
     let total_credits=0;
     for(let i=0;i<total_sub;i++){
-        body.innerHTML=`<body calss="bodyy">
-    <div class="main">
-        <div class="main1">CGPA And SGPA Calculator</div>
-    </div>
+        HTML+=`
     <div class="all_input">
         <div>
         <label class="label11">Marks :</label>
@@ -80,9 +77,10 @@ const display=(total_sub)=>{
     <div class="submit3">
         <button>SUBMIT</button>
     </div>`;
-    let submit3=document.querySelector(".submit3");
-    let mark=document.querySelector(".input12");
-    let credit=document.querySelector(".input22");
+    body.innerHTML=HTML;
+    let submit3=document.querySelector(".submit3 button");
+    let mark=document.querySelectorAll(".input12");
+    let credit=document.querySelectorAll(".input22");
     submit3.addEventListener("click",()=>{
         let marks=Number(mark.value);
         let credits=Number(credit.value);
@@ -96,10 +94,7 @@ const display=(total_sub)=>{
 
 }
 sgpa_cal=()=>{
-    body.innerHTML=`<body calss="bodyy">
-    <div class="main">
-        <div class="main1">CGPA And SGPA Calculator</div>
-    </div>
+    HTML+=`
     <div class="mid">
         <label class="label1">Total Subjects :</label>
         <input class="input1" type="number" placeholder="Total no of Subject">
@@ -107,8 +102,9 @@ sgpa_cal=()=>{
     <div class="submit4">
         <button>SUBMIT</button>
     </div>`;
+    body.innerHTML=HTML;
     let input=document.querySelector(".input1");
-    let submit4=document.querySelector(".submit4");
+    let submit4=document.querySelector(".submit4 button");
     submit4.addEventListener("click",()=>{
         total_sub=Number(input.value);
         display(total_sub);
