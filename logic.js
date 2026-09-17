@@ -55,10 +55,8 @@ const display=(total_sub)=>{
     let total_grade_marks=0;
     let total_credits=0;
     console.log(total_sub);
-    sub=0;
-    for(let i=0;i<total_sub;i++){
-        console.log(i);
-        document.querySelector(".button").innerHTML=`
+    let i=0;
+    document.querySelector(".button").innerHTML=`
         <div class="all_input">
         <div>
         <label class="label11">Marks :</label>
@@ -73,19 +71,23 @@ const display=(total_sub)=>{
     <div class="submit3">
         <button>SUBMIT</button>
     </div>`;
-    let mark=document.querySelector(".input12");
-    let credit=document.querySelector(".input22");
-    document.querySelector(".submit3 button").addEventListener("click",()=>{
+    if(i===total_sub){
+    conclude(total_credits,total_grade_marks);
+    }else{
+        let mark=document.querySelector(".input12");
+        let credit=document.querySelector(".input22");
+        console.log(i);
+        document.querySelector(".submit3 button").addEventListener("click",()=>{
         let marks=Number(mark.value);
         let credits=Number(credit.value);
         let grade_marks=grade_point(marks);
         total_grade_marks=total_grade_marks+(grade_marks*credits);
         total_credits=total_credits+credits;
-        sub++;
-    });
-    }
-    if(sub===total_sub){
-    conclude(total_credits,total_grade_marks);
+        mark.value="";
+        credit.value="";
+        mark.focus();
+        i++;
+        });
     }
 }
 sgpa_cal=()=>{
