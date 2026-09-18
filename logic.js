@@ -6,7 +6,7 @@ const conclude=(total_credits,total_grade_marks)=>{
     let final_total=Math.round((total_grade_marks/total_credits)*100)/100;
     document.querySelector(".button").innerHTML=`
     <div class="result">
-        <div>You Have Scored ${total_grade_marks}</div>
+        <div>You Have Scored ${final_total}</div>
     </div>
     <div class="submit1">
         <button>RECHECK</button>
@@ -27,29 +27,53 @@ const grade_point=(marks)=>{
         <button>SUBMIT</button>
     </div>`;
     let mark=document.querySelector(".input12");
+    let n=0;
     document.querySelector(".submit2 button").addEventListener("click",()=>{
-        marks=Number(mark.value);
+    marks=Number(mark.value);
+    console.log(marks);
+    if(marks <= 100 && marks>=90){
+        n= 10;
+    }else if(marks>=70){
+        n= 8;
+    }else if(marks>=60){
+        n= 7;
+    }else if(marks>=50){
+        n= 6;
+    }else if(marks>=40){
+        n= 5;
+    }else if(marks>=30){
+        n= 4;
+    }else if(marks>=20){
+        n= 3;
+    }else if(marks>=10){
+        n= 2;
+    }else if(marks>=0){
+        n= 1;
+    }
+    return n;
     });
     }
+    else{
     if(marks <= 100 && marks>=90){
         return 10;
     }else if(marks>=70){
-        return 8
+        return 8;
     }else if(marks>=60){
-        return 7
+        return 7;
     }else if(marks>=50){
-        return 6
+        return 6;
     }else if(marks>=40){
-        return 5
+        return 5;
     }else if(marks>=30){
-        return 4
+        return 4;
     }else if(marks>=20){
-        return 3
+        return 3;
     }else if(marks>=10){
-        return 2
+        return 2;
     }else if(marks>=0){
-        return 1
+        return 1;
     }
+}
 }
 const display=(total_sub)=>{
     let total_grade_marks=0;
@@ -71,9 +95,6 @@ const display=(total_sub)=>{
     <div class="submit3">
         <button>SUBMIT</button>
     </div>`;
-    if(i===total_sub){
-    conclude(total_credits,total_grade_marks);
-    }else{
         let mark=document.querySelector(".input12");
         let credit=document.querySelector(".input22");
         console.log(i);
@@ -81,14 +102,20 @@ const display=(total_sub)=>{
         let marks=Number(mark.value);
         let credits=Number(credit.value);
         let grade_marks=grade_point(marks);
+        console.log("hi");
         total_grade_marks=total_grade_marks+(grade_marks*credits);
         total_credits=total_credits+credits;
+        i++;    
+        if(i===total_sub){
+            console.log(total_credits);
+            console.log(total_grade_marks);
+            conclude(total_credits,total_grade_marks);
+        }else{
         mark.value="";
         credit.value="";
         mark.focus();
-        i++;
-        });
-    }
+        }
+    });
 }
 sgpa_cal=()=>{
     document.querySelector(".button").innerHTML=`
@@ -102,8 +129,30 @@ sgpa_cal=()=>{
     let input=document.querySelector(".input1");
     let submit4=document.querySelector(".submit4 button");
     submit4.addEventListener("click",()=>{
+    total_sub=Number(input.value);
+    if(total_sub<=0){
+        document.querySelector(".button").innerHTML=`
+        <div class="mid1">
+        <div class="wrong1">Enter Valid number of marks</div>
+        <br>
+        <div class="mid12">
+        <label class="label1">Total Subjects :</label>
+        <input class="input1" type="number" placeholder="Total no of Subject">
+        </div>
+    </div>
+    <div class="submit4">
+        <button>SUBMIT</button>
+    </div>`;
+        input.value="";
+        input.focus();
+        document.querySelector(".submit4 button").addEventListener("click",()=>{
         total_sub=Number(input.value);
         display(total_sub);
+        });
+    }
+    else{
+        display(total_sub);
+        }
     });
 }
 sgpa.addEventListener("click",sgpa_cal);
