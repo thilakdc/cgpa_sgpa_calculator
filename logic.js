@@ -26,7 +26,7 @@ const conclude=(total_credits,total_grade_marks)=>{
         <div>You ${c_credit}</div>
     </div>
     <div class="submit1">
-        <button>RECHECK</button>
+        <button class="border">RECHECK</button>
     </div>
 </body>`;
 document.querySelector(".submit1 button").addEventListener("click",()=>{
@@ -77,7 +77,7 @@ const display=(total_sub)=>{
         </div>
         </div>
     <div class="submit3">
-        <button>SUBMIT</button>
+        <button class="border">SUBMIT</button>
     </div>`;
         let mark=document.querySelector(".input12");
         let credit=document.querySelector(".input22");
@@ -88,6 +88,7 @@ const display=(total_sub)=>{
         let grade_marks=  grade_point(marks);
         console.log("hi");
         document.querySelector(".if_wrong div").textContent="";
+        document.querySelector(".if_wrong").style.border="0px";
         if(grade_marks===0){
             document.querySelector(".if_wrong div").textContent="Invalid Marks";
             document.querySelector(".if_wrong").style.backgroundColor="blue";
@@ -120,7 +121,7 @@ const sgpa_cal=()=>{
         <input class="input1" type="number" placeholder="Total no of Subject">
     </div>
     <div class="submit4">
-        <button>SUBMIT</button>
+        <button class="border">SUBMIT</button>
     </div>`;
     let input=document.querySelector(".input1");
     let submit4=document.querySelector(".submit4 button");
@@ -132,13 +133,18 @@ const sgpa_cal=()=>{
         <div class="wrong1">Enter Valid number of marks</div>
         <br>
         <div class="mid12">
+        <div class="mid13">
         <label class="label1">Total Subjects :</label>
-        <input class="input1" type="number" placeholder="Total no of Subject">
+        <input class="input1" type="number" placeholder="Total no of Subject"></div>
         </div>
     </div>
     <div class="submit4">
-        <button>SUBMIT</button>
+        <button class="border">SUBMIT</button>
     </div>`;
+        document.querySelector(".wrong1").style.backgroundColor="blue";
+        document.querySelector(".wrong1").style.color="white";
+        document.querySelector(".wrong1").style.border="2px solid black";
+        document.querySelector(".wrong1").style.borderRadius="25px";
         input.value="";
         input.focus();
         document.querySelector(".submit4 button").addEventListener("click",()=>{
@@ -152,8 +158,8 @@ const sgpa_cal=()=>{
     });
 }
 sgpa.addEventListener("click",sgpa_cal);
-const cgpa_conclude =(t_gpa,total_gpa)=>{
-    let final_gpa =Math.round((t_gpa/total_gpa)*100)/100;
+const cgpa_conclude =(t_gpa,total_sem_c)=>{
+    let final_total =Math.round((t_gpa/total_sem_c)*100)/100;
     let c_credit="";
     if(final_total>=9){
         c_credit="Are Outstanding";
@@ -172,11 +178,11 @@ const cgpa_conclude =(t_gpa,total_gpa)=>{
     }
     document.querySelector(".button").innerHTML=`
     <div class="result">
-        <div>Your sgpa is ${final_gpa} </div>
+        <div>Your sgpa is ${final_total} </div>
         <div>You ${c_credit}</div>
     </div>
     <div class="submit1">
-        <button>RECHECK</button>
+        <button class=border">RECHECK</button>
     </div>
 </body>`;
 document.querySelector(".submit1 button").addEventListener("click",()=>{
@@ -188,28 +194,34 @@ const cgpa_page=(total_sem_c)=>{
     let i=0;
     document.querySelector(".button").innerHTML=`
         <div class="all_input">
-        <div class="if_wrong"></div>
-        <div>
-        <label class="label11">Marks :</label>
-        <input class="input12" type="number" placeholder="Marks  Of Subject">
+        <div class="if_wrong"><div></div></div>
+        <div class="lab">
+        <label class="label11">SGPA :</label>
+        <input class="input12" type="number" placeholder="SGPA  Of A Semister">
+        </div>
         </div>
         <br>
     <div class="submit6">
-        <button>SUBMIT</button>
+        <button class="border">SUBMIT</button>
     </div>`;
+    let wrong=document.querySelector(".if_wrong div");
         let gpa=document.querySelector(".input12");
         gpa.focus();
         document.querySelector(".submit6 button").addEventListener("click",()=>{
         let gpa_marks=Number(gpa.value);
-        if(gpa_marks>10 || gpa_marks<0){
-            document.querySelector(".if_wrong").textContent=`Enter Valid Sgpa`;
+        if(gpa_marks>10 || gpa_marks<0 || gpa_marks==" "){
+            wrong.textContent=`Enter Valid SGPA`;
+            wrong.style.borderRadius="25px";
+            wrong.style.border="3px solid black";
+            wrong.style.fontSize="50px";
+            wrong.style.backgroundColor="rgb(114, 255, 19)"
             gpa.value="";
             gpa.focus();
         }else{
         t_gpa = t_gpa+gpa_marks;
         i++;
         if(i==total_sem_c){
-            cgpa_conclude(t_gpa,total_gpa);
+            cgpa_conclude(t_gpa,total_sem_c);
         }else{
             gpa.value="";
             gpa.focus();
@@ -222,20 +234,22 @@ const total_sem=()=>{
     <div class="mid">
     <div class="sem_wrong"></div>
     <div class="ppp">
-        <label class="label1">Total Subjects :</label>
+        <label class="label1"> Semisters :</label>
         <input class="input1" type="number" placeholder="Total Number Of Semisters">
     </div>
     </div>
     <div class="submit5">
-        <button>SUBMIT</button>
+        <button class="border">SUBMIT</button>
     </div>`;
     let t_sem=document.querySelector(".input1");
     t_sem.focus();
-    let total_sem_c=Number(t_sem.value);
     document.querySelector(".submit5 button").addEventListener("click",()=>{
-        if(total_sem_c<=0 || total_sem_c>8){
-            document.querySelector(".sem_wrong div").textContent=`Enter The Valid Numbers Of Sem`;
-            t_sem="";
+        let total_sem_c=Number(t_sem.value);
+        if(total_sem_c<=0 || total_sem_c>8 || total_sem_c==" "){
+            document.querySelector(".sem_wrong").textContent=`Enter The Valid Numbers Of Sem`;
+            document.querySelector(".sem_wrong").style.borderRadius="25px";
+            document.querySelector(".sem_wrong").style.border=" 2px solid black";
+            t_sem.value="";
             t_sem.focus();
         }else{
         cgpa_page(total_sem_c);

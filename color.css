@@ -3,6 +3,11 @@
     padding: 0px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+.bodyy{
+    background-image:url(image.png);
+    background-position: center;
+    background-size: cover;
+}
 .main{
     display:flex;
     justify-content:center;
@@ -13,11 +18,11 @@
 .main1{
     display:inline-flex ;
     border:5px;
-    background-color: rgb(36, 98, 98);
+    background-color: rgb(0, 0, 0);
     border-radius: 25px;
     color: white;
     font-size: 90px;
-    border: 5px solid black;
+    border: 5px solid rgb(73, 209, 24);
 }
 .button{
     display: flex;
@@ -63,6 +68,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction:column;
     font-size: 50px;
     height: 250px;
     width: 100%;
@@ -95,7 +101,7 @@
     height: 60px;
     width: 300px;
     justify-content: center;
-    background-color: rgb(94, 90, 223);
+    background-color: rgb(8, 1, 200);
     color:white;
 }
 .all_input{
@@ -105,15 +111,17 @@
     text-align: center;
     height: 250px;
     width:100%;
-    flex-direction: column;
+    flex-direction:column;
     gap:10px;
 }
 .label11{
     font-size: 50px;
+    color:rgb(255, 200, 0);
 
 }
 .label21{
     font-size: 50px;
+    color:rgb(255, 200, 0);
 }
 .input12,.input22{
     border-radius: 10px;
@@ -159,7 +167,7 @@
     height: 60px;
     width: 300px;
     justify-content: center;
-    background-color: rgb(94, 90, 223);
+    background-color: rgb(8, 1, 200);
     color:white;
 }
 .submit3{
@@ -179,7 +187,7 @@
     height: 60px;
     width: 300px;
     justify-content: center;
-    background-color: rgb(94, 90, 223);
+    background-color: rgb(8, 1, 200);
     color:white;
 }
 .submit4{
@@ -199,18 +207,8 @@
     height: 60px;
     width: 300px;
     justify-content: center;
-    background-color: rgb(94, 90, 223);
+    background-color: rgb(8, 1, 200);
     color:white;
-}
-.wrong{
-    font-size: 50px;
-    display: inline;
-    text-align: center;
-    height: 60px;
-    width:500px;
-    border-radius: 25px;
-    background-color: rgb(158, 216, 48);
-    border: 2px solid black;
 }
 .mid1{
     font-size: 50px;
@@ -237,6 +235,7 @@
     text-align: center;
     text-align: center;
     font-size: 50px;
+    color:white;
 }
 .submit5,.submit6{
     display: inline-flex;
@@ -247,7 +246,7 @@
 }
 .submit5 button,.submit6 button{
     border-radius: 25px;
-    border:5px solid black;
+    border:2px solid black;
     font-size:50px;
     font-weight: bolder;
     display: flex;
@@ -255,25 +254,34 @@
     height: 60px;
     width: 300px;
     justify-content: center;
-    background-color: rgb(94, 90, 223);
+    background-color: rgb(8, 1, 200);
     color:white;
-}
-.mid{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction:column;
-    height: 200px;
-    width: 100%;
 }
 .sem_wrong {
     display: inline;
     background-color: rgb(116, 221, 45);
-    color:white;
 }
 .ppp{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction:row;
     gap:10px;
 }
+.lab{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:row;
+    gap: 10px;
+}
+.mid13{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.label1{
+    color:rgb(255, 200, 0);
+}
+
