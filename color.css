@@ -8,12 +8,22 @@
     background-position: center;
     background-size: cover;
 }
+.reach{
+    display: inline;
+    border-radius: 25px;
+    font-size:30px;
+    border:2px solid black;
+    text-align: center;
+    background-color: white;
+}
 .main{
     display:flex;
     justify-content:center;
     align-items:center;
     height: 400px;
     width: 100%;
+    flex-direction: column;
+    gap:40px;
 }
 .main1{
     display:inline-flex ;
@@ -68,7 +78,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction:column;
+    flex-direction:row;
     font-size: 50px;
     height: 250px;
     width: 100%;
@@ -141,11 +151,11 @@
     width: 100%;
 }
 .result div{
-    font-size: 50px;
+    font-size: 45px;
     font-weight: bold;
     display: inline;
     text-align: center;
-    background-color: rgb(96, 214, 36);
+    background-color: #bcb166;
     color:black;
     border-radius:25px;
     border:3px solid black;
@@ -233,8 +243,7 @@
 .if_wrongs{
     display: inline;
     text-align: center;
-    text-align: center;
-    font-size: 50px;
+    font-size: 45px;
     color:white;
 }
 .submit5,.submit6{
@@ -256,6 +265,16 @@
     justify-content: center;
     background-color: rgb(8, 1, 200);
     color:white;
+}
+.mid5{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction:column;
+    font-size: 50px;
+    height: 250px;
+    width: 100%;
+    gap:20px;
 }
 .sem_wrong {
     display: inline;

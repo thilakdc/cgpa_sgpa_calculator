@@ -6,30 +6,31 @@ const conclude=(total_credits,total_grade_marks)=>{
     let final_total=Math.round((total_grade_marks/total_credits)*100)/100;
     let c_credit="";
     if(final_total>=9){
-        c_credit="Are Outstanding";
+        c_credit="Outstanding Work!! Your Dedication and Consistency Are Clearly Paying Off.";
     }else if(final_total>=8){
-        c_credit="Are Excellent";
+        c_credit="Excellent Performance! You Have Build Strong Academic Foundation.";
     }else if(final_total>=7){
-        c_credit="Are very Good";
+        c_credit="Very Good! You Have Done Well.focus on Preparation.";
     }else if(final_total>=6){
-        c_credit="Are Good";
+        c_credit="Good job! You have To focus On Your Weakness.";
     }else if(final_total>=5.5){
-        c_credit="Are Average";
+        c_credit="You Passed,Don't Stop Here And Focus More.";
     }else if(final_total>=5){
-        c_credit="Have Passed";
+        c_credit="YOu Made It.Now Use This Result As A Motivation";
     }else{
-        c_credit=" Have Failed";
+        c_credit="Don't Give Up! One Result Does Not Define Your Ability.";
     }
     document.querySelector(".button").innerHTML=`
     <div class="result">
         <div>Your sgpa is ${final_total} </div>
-        <div>You ${c_credit}</div>
+        <div>${c_credit}</div>
     </div>
     <div class="submit1">
         <button class="border">RECHECK</button>
     </div>
 </body>`;
-document.querySelector(".submit1 button").addEventListener("click",()=>{
+document.querySelector(".submit1 button").addEventListener("click",(e)=>{
+    e.preventDefault();
     sgpa_cal();
 })
 }
@@ -65,7 +66,7 @@ const display=(total_sub)=>{
     let i=0;
     document.querySelector(".button").innerHTML=`
         <div class="all_input">
-        <div class="if_wrong"><div></div></div>
+        <div class="if_wrongs"><div></div></div>
         <div>
         <label class="label11">Marks :</label>
         <input class="input12" type="number" placeholder="Marks  Of Subject">
@@ -86,20 +87,20 @@ const display=(total_sub)=>{
         let marks=Number(mark.value);
         let credits=Number(credit.value);
         let grade_marks=  grade_point(marks);
-        console.log("hi");
-        document.querySelector(".if_wrong div").textContent="";
-        document.querySelector(".if_wrong").style.border="0px";
+        document.querySelector(".if_wrongs div").textContent="";
+        document.querySelector(".if_wrongs").style.border="0px";
         if(grade_marks===0){
-            document.querySelector(".if_wrong div").textContent="Invalid Marks";
-            document.querySelector(".if_wrong").style.backgroundColor="blue";
-            document.querySelector(".if_wrong").style.color="white";
-            document.querySelector(".if_wrong").style.border="2px solid black";
-            document.querySelector(".if_wrong").style.borderRadius="25px";
+            document.querySelector(".if_wrongs div").textContent="Invalid Marks";
+            document.querySelector(".if_wrongs").style.backgroundColor="#e61515";
+            document.querySelector(".if_wrongs").style.color="white";
+            document.querySelector(".if_wrongs").style.border="5px solid black";
+            document.querySelector(".if_wrongs").style.borderRadius="25px";
             mark.value="";
             credit.value="";
             mark.focus();
         }
-        else{total_grade_marks=total_grade_marks+(grade_marks*credits);
+        else{
+        total_grade_marks=total_grade_marks+(grade_marks*credits);
         total_credits=total_credits+credits;
         i++;    
         if(i===total_sub){
@@ -114,28 +115,15 @@ const display=(total_sub)=>{
     }
 });
 }
-const sgpa_cal=()=>{
+const wrong_total=()=>{
     document.querySelector(".button").innerHTML=`
-    <div class="mid">
-        <label class="label1">Total Subjects :</label>
-        <input class="input1" type="number" placeholder="Total no of Subject">
-    </div>
-    <div class="submit4">
-        <button class="border">SUBMIT</button>
-    </div>`;
-    let input=document.querySelector(".input1");
-    let submit4=document.querySelector(".submit4 button");
-    submit4.addEventListener("click",()=>{
-    total_sub=Number(input.value);
-    if(total_sub<=0){
-        document.querySelector(".button").innerHTML=`
         <div class="mid1">
-        <div class="wrong1">Enter Valid number of marks</div>
+        <div class="wrong1">Enter Valid number of Subjects</div>
         <br>
         <div class="mid12">
         <div class="mid13">
         <label class="label1">Total Subjects :</label>
-        <input class="input1" type="number" placeholder="Total no of Subject"></div>
+        <input class="input1" type="number" placeholder="Total no of Subjects"></div>
         </div>
     </div>
     <div class="submit4">
@@ -143,14 +131,39 @@ const sgpa_cal=()=>{
     </div>`;
         document.querySelector(".wrong1").style.backgroundColor="blue";
         document.querySelector(".wrong1").style.color="white";
-        document.querySelector(".wrong1").style.border="2px solid black";
+        document.querySelector(".wrong1").style.border="3px solid black";
         document.querySelector(".wrong1").style.borderRadius="25px";
+        let input=document.querySelector(".input1");
         input.value="";
         input.focus();
-        document.querySelector(".submit4 button").addEventListener("click",()=>{
-        total_sub=Number(input.value);
-        display(total_sub);
+        document.querySelector(".submit4 button").addEventListener("click",(e)=>{
+            e.preventDefault();
+            total_sub=Number(input.value);
+            if(total_sub<=0){
+            wrong_total();
+            }
+            else{
+            display(total_sub);
+            }
         });
+    }
+const sgpa_cal=()=>{
+    document.querySelector(".button").innerHTML=`
+    <div class="mid">
+        <label class="label1">Total Subjects :</label>
+        <input class="input1" type="number" placeholder="Total no of Subjects">
+    </div>
+    <div class="submit4">
+        <button class="border">SUBMIT</button>
+    </div>`;
+    let input=document.querySelector(".input1");
+    let submit4=document.querySelector(".submit4 button");
+    input.focus();
+    submit4.addEventListener("click",(e)=>{
+        e.preventDefault();
+    total_sub=Number(input.value);
+    if(total_sub<=0){
+        wrong_total();
     }
     else{
         display(total_sub);
@@ -162,30 +175,31 @@ const cgpa_conclude =(t_gpa,total_sem_c)=>{
     let final_total =Math.round((t_gpa/total_sem_c)*100)/100;
     let c_credit="";
     if(final_total>=9){
-        c_credit="Are Outstanding";
+        c_credit="Outstanding Work!! Your Dedication and Consistency Are Clearly Paying Off.";
     }else if(final_total>=8){
-        c_credit="Are Excellent";
+        c_credit="Excellent Performance! You Have Build Strong Academic Foundation.";
     }else if(final_total>=7){
-        c_credit="Are very Good";
+        c_credit="Very Good! You Have Done Well.focus on Preparation.";
     }else if(final_total>=6){
-        c_credit="Are Good";
+        c_credit="Good job! You have To focus On Your Weakness.";
     }else if(final_total>=5.5){
-        c_credit="Are Average";
+        c_credit="You Passed,Don't Stop Here And Focus More.";
     }else if(final_total>=5){
-        c_credit="Have Passed";
+        c_credit="YOu Made It.Now Use This Result As A Motivation";
     }else{
-        c_credit=" Have Failed";
+        c_credit="Don't Give Up! One Result Does Not Define Your Ability.";
     }
     document.querySelector(".button").innerHTML=`
     <div class="result">
-        <div>Your sgpa is ${final_total} </div>
-        <div>You ${c_credit}</div>
+        <div>Your Cgpa is ${final_total} </div>
+        <div>${c_credit}</div>
     </div>
     <div class="submit1">
         <button class=border">RECHECK</button>
     </div>
 </body>`;
-document.querySelector(".submit1 button").addEventListener("click",()=>{
+document.querySelector(".submit1 button").addEventListener("click",(e)=>{
+    e.preventDefault();
     total_sem();
 });
 }
@@ -207,7 +221,8 @@ const cgpa_page=(total_sem_c)=>{
     let wrong=document.querySelector(".if_wrong div");
         let gpa=document.querySelector(".input12");
         gpa.focus();
-        document.querySelector(".submit6 button").addEventListener("click",()=>{
+        document.querySelector(".submit6 button").addEventListener("click",(e)=>{
+            e.preventDefault();
         let gpa_marks=Number(gpa.value);
         if(gpa_marks>10 || gpa_marks<0 || gpa_marks==" "){
             wrong.textContent=`Enter Valid SGPA`;
@@ -231,7 +246,7 @@ const cgpa_page=(total_sem_c)=>{
 }
 const total_sem=()=>{
     document.querySelector(".button").innerHTML=`
-    <div class="mid">
+    <div class="mid5">
     <div class="sem_wrong"></div>
     <div class="ppp">
         <label class="label1"> Semisters :</label>
@@ -243,12 +258,13 @@ const total_sem=()=>{
     </div>`;
     let t_sem=document.querySelector(".input1");
     t_sem.focus();
-    document.querySelector(".submit5 button").addEventListener("click",()=>{
+    document.querySelector(".submit5 button").addEventListener("click",(e)=>{
+        e.preventDefault();
         let total_sem_c=Number(t_sem.value);
         if(total_sem_c<=0 || total_sem_c>8 || total_sem_c==" "){
             document.querySelector(".sem_wrong").textContent=`Enter The Valid Numbers Of Sem`;
             document.querySelector(".sem_wrong").style.borderRadius="25px";
-            document.querySelector(".sem_wrong").style.border=" 2px solid black";
+            document.querySelector(".sem_wrong").style.border=" 3px solid black";
             t_sem.value="";
             t_sem.focus();
         }else{
