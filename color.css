@@ -224,7 +224,7 @@
     font-size: 50px;
     display: inline-flex;
     justify-content: center;
-    align-items: center;
+    padding-bottom:10ox;
     flex-direction: column;
     gap:5px;
     
@@ -302,5 +302,10 @@
 }
 .label1{
     color:rgb(255, 200, 0);
+}
+.if_wrongs1{
+    display: flex;
+    justify-content: center;
+    align-items: end;
 }
 
